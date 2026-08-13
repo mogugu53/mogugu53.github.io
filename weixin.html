@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>墨咕找书 · 使用指南</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== 顶部 ===== -->
+  <div class="hero reveal">
+    <div class="logo">墨</div>
+    <div class="brand">MOGU BOOK · 墨咕找书</div>
+    <h1>一对一找书服务</h1>
+    <div class="line"></div>
+    <div class="sub">收货后使用指南 · 跟着做就可以啦</div>
+    <div class="meta">秒级核销 · 多平台书源 · 专属售后</div>
+  </div>
+
+  <!-- ===== 使用教程 ===== -->
+  <div class="card reveal">
+    <div class="card-title"><span class="bar"></span>使用教程<span class="en">TUTORIAL</span></div>
+    <div class="url-label">收到货后，打开核销网址 👇</div>
+    <div class="url-box">
+      <div class="url-text" id="site-url">https://mogugu.top</div>
+      <button class="copy-btn" onclick="copyUrl()">复制</button>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div>复制上方<b>网址</b>，发送到 <b>微信</b> 任意聊天窗口</div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>在微信里<b>点击网址打开</b>，输入获得的<b>卡密</b>完成核销</div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>视频教程在页面<b>最下方</b>，跟着视频一步步操作，就能开始找书啦</div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div>加入下方<b>微信售后群</b>，把<b>群昵称</b>改成：<b>激活码＋到期时间</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 售后加群 ===== -->
+  <div class="card reveal">
+    <div class="card-title"><span class="bar"></span>加入售后群<span class="en">AFTER-SALES</span></div>
+    <div id="qr-area"></div>
+  </div>
+
+  <!-- ===== 操作视频 ===== -->
+  <div class="card reveal">
+    <div class="card-title"><span class="bar"></span>操作视频<span class="en">VIDEO GUIDE</span></div>
+    <div id="video-area"></div>
+  </div>
+
+  <!-- ===== 群昵称规则 ===== -->
+  <div class="card reveal">
+    <div class="card-title"><span class="bar"></span>入群必读 · 群昵称格式<span class="en">NOTICE</span></div>
+    <div class="nick-rule">
+      为了方便管理和售后，入群后请把<b>群昵称</b>改成下面的格式：
+      <div class="fmt">
+        <b>激活码 ＋ 到期时间</b>
+        <div class="ex">例：ABCD1234 9.6<br>（激活码就是你核销用的那串卡密，到期时间按卡种天数往后算）</div>
+      </div>
+      改好之后就可以愉快使用啦，有问题随时在群里喊～
+    </div>
+  </div>
+
+  <div class="footer">墨咕找书 · 让找书变轻松 <span class="heart">♥</span></div>
+
+</div>
+
+<script>
+// 复制网址功能
+function copyUrl() {
+  const url = document.getElementById("site-url").textContent.trim();
+  const btn = document.querySelector(".copy-btn");
+  const done = function () {
+    btn.textContent = "已复制 ✓";
+    setTimeout(function () { btn.textContent = "复制"; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(function () { fallback(); });
+  } else {
+    fallback();
+  }
+  function fallback() {
+    const ta = document.createElement("textarea");
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+}
+</script>
+<script src="config.js"></script>
+<!-- ============================================================
+     群二维码配置：把二维码图片放进 images 文件夹，
+     改下面的文件名和提示文字就行
+============================================================ -->
+<script>
+const QR_LIST = [
+  { type: "wx", label: "微信售后群", img: "images/微信群二维码.jpg", tip: "保存图片后，打开微信扫一扫加群" },
+];
+</script>
+<script src="common.js"></script>
+</body>
+</html>
